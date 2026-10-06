@@ -1,21 +1,29 @@
-<p align="center"><strong></strong>BlockFall — Web Falling-Block Puzzle Game</strong></p>  
+<p align="center">
+  <strong>BlockFall — Web Falling-Block Puzzle Game</strong>
+</p>
 
 <p align="center">
   <a href="https://github.com/Devputta/Drafts-might-be-needed-/blob/main/LOGO/Gemini_Generated_Image_1ppnm1ppnm1ppnm1%20(1).jfif" target="_blank" rel="noopener noreferrer">
-    <img src="https://raw.githubusercontent.com/Devputta/Drafts-might-be-needed-/main/LOGO/Gemini_Generated_Image_1ppnm1ppnm1ppnm1%20(1).jfif" alt="BlockFall Project Logo" width="220" style="border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);" />
+    <img src="https://raw.githubusercontent.com/Devputta/Drafts-might-be-needed-/main/LOGO/Gemini_Generated_Image_1ppnm1ppnm1ppnm1%20(1).jfif" alt="BlockFall Project Logo" width="220" />
   </a>
 </p>
 
 <p align="center">
-  <strong>A high-performance browser-based falling-block puzzle game with responsive 4-way tap controls, 7-bag randomizer, 30+ arcade levels, and particle line-clear celebrations.</strong>
+  <strong>
+    A browser-based falling-block puzzle game built with React and TypeScript,
+    featuring responsive controls, fair piece generation, progressive levels,
+    SRS rotation, scoring, audio feedback, and arcade-style visual effects.
+  </strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/Devputta/BackFall.git"><img src="https://img.shields.io/badge/GitHub-Repository-181717?logo=github" alt="GitHub Repo" /></a>
+  <a href="https://github.com/Devputta/BackFall">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?logo=github" alt="GitHub Repository" />
+  </a>
   <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black" alt="React 19" />
   <img src="https://img.shields.io/badge/Vite-8.x-646CFF?logo=vite&logoColor=white" alt="Vite" />
-  <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License: Apache 2.0" />
+  <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="Apache License 2.0" />
   <img src="https://img.shields.io/badge/Tests-12%2F12_Passing-brightgreen" alt="Tests Passing" />
 </p>
 
@@ -23,165 +31,661 @@
 
 ## 🎮 Overview
 
-**BlockFall** is a single-player web puzzle game engineered from the ground up for speed, fidelity, and responsiveness. Powered by an independent headless engine coupled with a high-frame-rate HTML5 canvas renderer, BlockFall delivers genuine arcade physics, Super Rotation System (SRS) wall-kicks, and dynamic particle celebrations on every line clear.
+**BlockFall** is a single-player browser-based falling-block puzzle game designed around a lightweight game engine and responsive canvas rendering.
+
+The game separates core gameplay logic from the user interface so that movement, collision detection, rotation, scoring, piece generation, and board updates can be tested independently from the browser UI.
+
+The gameplay system includes:
+
+* Deterministic game-state management
+* 7-bag tetromino randomization
+* Super Rotation System (SRS)
+* Progressive gravity levels
+* Line-clear scoring
+* Hold and next-piece systems
+* Keyboard, mouse, and touch controls
+* Canvas-based rendering
+* Web Audio API sound generation
+* Particle and screen-shake effects
+* Local persistence for settings and records
+* Error handling for UI failures
 
 ---
 
 ## ✨ Features
 
-- **Decoupled Game Engine**: Pure TypeScript engine architecture independent of the UI layer, fully testable without DOM overhead.
-- **Fair 7-Bag Randomizer**: Continuous Fisher-Yates shuffled 7-bag cycle guarantees balanced piece distribution with no drought.
-- **Super Rotation System (SRS)**: Complete clockwise and counter-clockwise rotation kick tables for all standard tetrominoes (`I`, `O`, `T`, `S`, `Z`, `J`, `L`).
-- **Row Clear Celebrations**:
-  - Multi-colored confetti and star particle physics on every clear.
-  - Floating score banners (`+100 SINGLE!`, `+300 DOUBLE!`, `+500 TRIPLE!`, `★ +800 TETRIS! ★`).
-  - Snappy screen shake proportional to rows cleared.
-- **30+ Progressive Levels**:
-  - Calibrated gravity scale ranging from 800ms (Level 1) to 20ms (Level 30).
-  - Rank titles from *Novice* to *Block Legend*.
-  - Jump directly into high-speed play via the **Starting Level Selector** (`1`, `5`, `10`, `15`, `20`).
-- **Zero Wasted Space & 4-Way Touch Controls**:
-  - **Left Tap**: Steer piece left.
-  - **Right Tap**: Steer piece right.
-  - **Top Tap**: Rotate clockwise.
-  - **Bottom Tap**: Soft drop.
-  - **Double-Tap / Swipe Down**: Instant hard drop.
-  - **Right-Click**: Rotate clockwise (context menu suppressed).
-- **Audio Synthesizer**: Pure Web Audio API synthesized arcade sounds (move blips, rotation chirps, hard drop thuds, line clear chimes, level fanfare). No external audio files or network latency.
-- **Customizable Layout**:
-  - Sizing options: **Compact** (240px), **Normal** (320px), and **Large** (440px).
-  - Fullscreen mode with standard Fullscreen API sync.
-- **Security & Data Integrity**:
-  - Hardened `localStorage` parsing with numerical boundaries and prototype injection prevention.
-  - Production `ErrorBoundary` preventing white-screen crashes.
+### 🎯 Game Engine
 
----
+* Independent TypeScript game engine
+* UI-independent gameplay logic
+* Centralized game state management
+* Deterministic state transitions
+* Collision and boundary validation
+* Gravity-based automatic piece movement
+* Ghost-piece calculation
+* Piece locking and row clearing
 
-## 🕹️ Controls Guide
+### 🎲 7-Bag Randomizer
 
-| Action | Keyboard | Touch / Screen Gestures | Mouse |
-| :--- | :--- | :--- | :--- |
-| **Move Left** | `←` or `A` | Tap left side of board | Click left side |
-| **Move Right** | `→` or `D` | Tap right side of board | Click right side |
-| **Rotate Clockwise** | `↑`, `W`, or `X` | Tap upper center of board | Right-Click / Click top |
-| **Rotate Counter-Clockwise** | `Z` | `CCW` on-screen button | — |
-| **Soft Drop** | `↓` or `S` | Tap bottom center of board | Click bottom center |
-| **Hard Drop** | `Space` | Double-tap / Fast downward swipe | `HARD DROP` button |
-| **Hold Piece** | `C` or `Shift` | Tap `HOLD` button | Click `HOLD` button |
-| **Pause / Resume** | `P` or `Esc` | Tap Pause button | Click Pause icon |
-| **Restart Game** | `R` | Restart modal button | Restart header button |
+BlockFall uses a **7-bag randomizer** to provide a more balanced distribution of tetrominoes.
 
----
-
-## 🏆 Scoring Specification
-
-Scores scale with the active level:
-
-$$\text{Points} = \text{Base Points} \times \text{Level}$$
-
-| Cleared Lines | Base Score | Level 1 | Level 10 | Level 20 |
-| :--- | :---: | :---: | :---: | :---: |
-| **Single** | 100 | 100 | 1,000 | 2,000 |
-| **Double** | 300 | 300 | 3,000 | 6,000 |
-| **Triple** | 500 | 500 | 5,000 | 10,000 |
-| **Tetris (4 Lines)** | 800 | 800 | 8,000 | 16,000 |
-
-- **Soft Drop**: 1 point per cell dropped.
-- **Hard Drop**: 2 points per cell dropped.
-
----
-
-## 🏗️ Project Architecture
+Each bag contains:
 
 ```text
-├── index.html                   # Entry point with security & mobile viewport headers
-├── src/
-│   ├── components/
-│   │   ├── CanvasBoard.tsx      # 60fps canvas renderer with particle & tap system
-│   │   ├── HoldPanel.tsx        # Miniature piece hold queue
-│   │   ├── NextQueuePanel.tsx   # Next 3 upcoming pieces preview
-│   │   ├── ScorePanel.tsx       # Live score, rank titles, and progress display
-│   │   ├── MobileControls.tsx   # Responsive touch D-pad & action triggers
-│   │   ├── ErrorBoundary.tsx    # Crash protection wrapper
-│   │   ├── GameOverModal.tsx    # End-game review & record indicators
-│   │   └── PauseModal.tsx       # Settings, size, and starting level dialog
-│   ├── game/
-│   │   ├── audio.ts             # Web Audio API retro synthesizer
-│   │   ├── bag.ts               # Fisher-Yates 7-bag piece randomizer
-│   │   ├── board.ts             # Grid logic, ghost piece, and row clearing
-│   │   ├── collision.ts         # Boundary and obstacle detection
-│   │   ├── constants.ts         # 30-level gravity tables & piece palettes
-│   │   ├── gameEngine.ts        # Central deterministic state machine
-│   │   ├── pieces.ts            # Tetromino matrices & spawn positions
-│   │   ├── rotation.ts          # Rotation solver with SRS kick testing
-│   │   ├── scoring.ts           # Score and level calculation
-│   │   ├── srsKicks.ts          # Super Rotation System offset tables
-│   │   ├── types.ts             # Core TypeScript type definitions
-│   │   └── useControls.ts       # DAS/ARR keyboard event management
-│   ├── lib/
-│   │   └── storage.ts           # Sanitized, bounds-checked LocalStorage handler
-│   └── tests/
-│       ├── engine.test.ts       # Headless test cases
-│       └── runTests.ts          # Test runner script
+I · O · T · S · Z · J · L
+```
+
+The pieces are shuffled before being consumed and a new bag is generated after the current bag is exhausted.
+
+This reduces long piece droughts and provides a more predictable arcade experience.
+
+### 🔄 Super Rotation System
+
+The rotation system supports:
+
+* Clockwise rotation
+* Counter-clockwise rotation
+* SRS wall kicks
+* Standard tetromino rotation states
+* Separate handling for the `I` piece
+* Rotation collision validation
+
+Supported pieces:
+
+```text
+I · O · T · S · Z · J · L
+```
+
+### 💥 Line-Clear Effects
+
+When rows are cleared, BlockFall can trigger:
+
+* Particle effects
+* Star effects
+* Floating score notifications
+* Screen shake
+* Audio feedback
+* Level progression
+
+Example score messages:
+
+```text
++100 SINGLE!
++300 DOUBLE!
++500 TRIPLE!
+★ +800 TETRIS! ★
+```
+
+### 📈 Progressive Levels
+
+The game supports more than **30 progressive levels**.
+
+Gravity increases as the player advances.
+
+| Level | Approx. Gravity |
+| ----: | --------------: |
+|     1 |          800 ms |
+|     5 |     Progressive |
+|    10 |     Progressive |
+|    15 |     Progressive |
+|    20 |     Progressive |
+|    25 |     Progressive |
+|    30 |           20 ms |
+
+Players can also select a starting level for faster gameplay.
+
+Available starting levels include:
+
+```text
+1 · 5 · 10 · 15 · 20
+```
+
+### 🎮 Responsive Controls
+
+The game supports:
+
+* Keyboard controls
+* Touch controls
+* Mouse interaction
+* Swipe gestures
+* Double-tap hard drop
+* Mobile D-pad controls
+
+The interface adapts to different screen sizes without requiring a separate mobile application.
+
+### 🔊 Audio
+
+Arcade-style sounds are generated using the **Web Audio API**.
+
+No external audio files are required.
+
+Audio events include:
+
+* Piece movement
+* Rotation
+* Hard drop
+* Line clear
+* Level progression
+* Game events
+
+### 🖥️ Customizable Layout
+
+The game provides multiple board sizing options:
+
+* **Compact** — 240px
+* **Normal** — 320px
+* **Large** — 440px
+
+A fullscreen mode is also supported through the browser's Fullscreen API.
+
+### 🛡️ Data & Error Handling
+
+The application includes:
+
+* Sanitized localStorage parsing
+* Numeric bounds checking
+* Safe persisted-state handling
+* Prototype-injection protection
+* React error boundary
+* No use of `eval`
+* TypeScript type boundaries
+
+---
+
+# 🕹️ Controls
+
+| Action                       | Keyboard        | Touch / Gesture         | Mouse                  |
+| :--------------------------- | :-------------- | :---------------------- | :--------------------- |
+| **Move Left**                | `←` / `A`       | Tap left side           | Click left side        |
+| **Move Right**               | `→` / `D`       | Tap right side          | Click right side       |
+| **Rotate Clockwise**         | `↑` / `W` / `X` | Tap upper area          | Right-click / top area |
+| **Rotate Counter-Clockwise** | `Z`             | CCW button              | —                      |
+| **Soft Drop**                | `↓` / `S`       | Tap bottom area         | Click bottom area      |
+| **Hard Drop**                | `Space`         | Double-tap / swipe down | Hard Drop button       |
+| **Hold Piece**               | `C` / `Shift`   | Hold button             | Hold button            |
+| **Pause / Resume**           | `P` / `Esc`     | Pause button            | Pause button           |
+| **Restart**                  | `R`             | Restart option          | Restart button         |
+
+---
+
+# 🏆 Scoring System
+
+BlockFall calculates line-clear points using the active level.
+
+### Formula
+
+```text
+Points = Base Points × Current Level
+```
+
+| Cleared Lines | Base Score | Level 1 | Level 10 | Level 20 |
+| :------------ | ---------: | ------: | -------: | -------: |
+| **Single**    |        100 |     100 |    1,000 |    2,000 |
+| **Double**    |        300 |     300 |    3,000 |    6,000 |
+| **Triple**    |        500 |     500 |    5,000 |   10,000 |
+| **Tetris**    |        800 |     800 |    8,000 |   16,000 |
+
+Additional scoring:
+
+```text
+Soft Drop  → 1 point per cell
+Hard Drop  → 2 points per cell
 ```
 
 ---
 
-## 🚀 Getting Started
+# 🔄 Project Flow
 
-### Prerequisites
+The application follows a layered gameplay flow from player input to state update and rendering.
 
-- [Node.js](https://nodejs.org/) (version 18 or newer)
-- `npm` or `bun`
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Devputta/BackFall.git
-   cd BackFall
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Launch development server:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-4. Build for production:
-   ```bash
-   npm run build
-   ```
-
-5. Run test suite:
-   ```bash
-   npx tsx src/tests/runTests.ts
-   ```
+```text
+                    ┌──────────────────────┐
+                    │     Player Input     │
+                    │                      │
+                    │ Keyboard / Touch /   │
+                    │ Mouse Controls       │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │   Control Handler    │
+                    │                      │
+                    │ Movement / Rotation  │
+                    │ Drop / Hold / Pause  │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                 ┌────────────────────────────┐
+                 │       Game Engine          │
+                 │                            │
+                 │  Game State                │
+                 │  Gravity                   │
+                 │  Piece Lifecycle           │
+                 └─────────────┬──────────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+     ┌────────────────┐ ┌───────────────┐ ┌─────────────────┐
+     │   Collision    │ │    Rotation   │ │   7-Bag Queue   │
+     │    System      │ │   SRS Kicks   │ │   Piece System   │
+     └───────┬────────┘ └───────┬───────┘ └────────┬────────┘
+             │                  │                  │
+             └──────────────────┼──────────────────┘
+                                ▼
+                    ┌──────────────────────┐
+                    │    Board Update      │
+                    │                      │
+                    │ Lock Piece           │
+                    │ Clear Completed Rows │
+                    │ Generate Ghost Piece │
+                    └──────────┬───────────┘
+                               │
+                 ┌─────────────┼─────────────┐
+                 │             │             │
+                 ▼             ▼             ▼
+        ┌──────────────┐ ┌────────────┐ ┌──────────────┐
+        │    Scoring   │ │   Level    │ │   Particles  │
+        │              │ │ Progress   │ │ & Effects    │
+        │ Lines / Drop │ │ & Gravity  │ │ Celebrations │
+        └──────┬───────┘ └─────┬──────┘ └──────┬───────┘
+               │               │               │
+               └───────────────┼───────────────┘
+                               ▼
+                    ┌──────────────────────┐
+                    │   Canvas Renderer    │
+                    │                      │
+                    │ Board / Pieces       │
+                    │ Ghost / Particles    │
+                    │ Animations           │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │     Player View      │
+                    │                      │
+                    │ Score / Level / UI   │
+                    │ Updated Game State   │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │    Local Storage     │
+                    │                      │
+                    │ High Score / Settings│
+                    │ Sanitized Game Data  │
+                    └──────────────────────┘
+```
 
 ---
 
-## 🔒 Security Policy
+# 🔁 Game Loop
 
-For security vulnerability disclosures and architecture policies, please review [SECURITY.md](SECURITY.md).
-
-- **Strict Input Sanitization**: Prevents tampering with persisted game states.
-- **Client Integrity**: Zero arbitrary code execution (`eval`), strict TypeScript boundaries, and secure meta headers.
+```text
+Player Action
+      │
+      ▼
+Input Validation
+      │
+      ▼
+Game State Update
+      │
+      ▼
+Collision Check
+      │
+      ├──── Invalid ────► Reject Action
+      │
+      ▼
+Valid Movement / Rotation
+      │
+      ▼
+Gravity Tick
+      │
+      ▼
+Piece Lock
+      │
+      ▼
+Row Detection
+      │
+      ├──── No Clear ─────► Continue Game
+      │
+      ▼
+Clear Rows
+      │
+      ▼
+Calculate Score
+      │
+      ▼
+Update Level
+      │
+      ▼
+Render Effects
+      │
+      ▼
+Generate Next Piece
+      │
+      ▼
+Continue Game Loop
+```
 
 ---
 
-## 👥 Contributors & Credits
+# 🏗️ Architecture
 
-- **Project Creator & Engineering**: [Devputta](https://github.com/Devputta)
-- **Repository**: [https://github.com/Devputta/BackFall.git](https://github.com/Devputta/BackFall.git)
-- **Logo Contributor**: Graphic asset provided via [Devputta Drafts Logo Archive](https://github.com/Devputta/Drafts-might-be-needed-/blob/main/LOGO/Gemini_Generated_Image_1ppnm1ppnm1ppnm1%20(1).jfif)
+BlockFall separates the interface, game engine, gameplay systems, and persistence layers.
+
+```text
+┌─────────────────────────────────────────────────────────┐
+│                       UI Layer                          │
+│                                                         │
+│ CanvasBoard · ScorePanel · HoldPanel · NextQueuePanel  │
+│ MobileControls · PauseModal · GameOverModal            │
+└─────────────────────────┬───────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────┐
+│                    Game Engine Layer                    │
+│                                                         │
+│ Game State · Input · Gravity · Piece Lifecycle         │
+└──────────────┬──────────────┬──────────────┬────────────┘
+               │              │              │
+               ▼              ▼              ▼
+        ┌────────────┐ ┌────────────┐ ┌──────────────┐
+        │ Board      │ │ Rotation   │ │ Piece / Bag  │
+        │ Collision  │ │ SRS Kicks  │ │ Management   │
+        └────────────┘ └────────────┘ └──────────────┘
+               │              │              │
+               └──────────────┼──────────────┘
+                              ▼
+                     ┌────────────────┐
+                     │ Scoring &      │
+                     │ Level System   │
+                     └───────┬────────┘
+                             │
+                             ▼
+                     ┌────────────────┐
+                     │ Persistence    │
+                     │ Local Storage  │
+                     └────────────────┘
+```
 
 ---
 
-## 📄 License
+# 🔗 Data Flow
 
-This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+```text
+Input
+  ↓
+Controls
+  ↓
+Game Engine
+  ↓
+Game State
+  ↓
+┌───────────────┬────────────────┐
+│               │                │
+▼               ▼                ▼
+Board         Scoring         Level System
+│               │                │
+└───────────────┼────────────────┘
+                ▼
+          Render State
+                │
+                ▼
+          Canvas Renderer
+                │
+                ▼
+          Player Interface
+```
+
+---
+
+# 🧩 Core Modules
+
+| Module              | Responsibility                                                     |
+| ------------------- | ------------------------------------------------------------------ |
+| **Game Engine**     | Controls the main game state and lifecycle                         |
+| **Board**           | Handles grid state, piece locking, ghost pieces, and line clearing |
+| **Collision**       | Validates movement against boundaries and occupied cells           |
+| **Rotation**        | Handles piece rotation and SRS wall kicks                          |
+| **7-Bag**           | Generates balanced tetromino sequences                             |
+| **Scoring**         | Calculates line-clear and drop points                              |
+| **Controls**        | Handles keyboard, mouse, touch, DAS, and ARR behavior              |
+| **Audio**           | Generates arcade effects using Web Audio API                       |
+| **Canvas Renderer** | Draws board, pieces, animations, and particles                     |
+| **Storage**         | Persists scores and user settings safely                           |
+| **Error Boundary**  | Prevents UI crashes from producing a blank application             |
+
+---
+
+# 📁 Project Structure
+
+```text
+BlockFall/
+│
+├── index.html
+├── metadata.json
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── .env.example
+├── .gitignore
+├── LICENSE
+├── SECURITY.md
+├── README.md
+│
+└── src/
+    │
+    ├── components/
+    │   ├── CanvasBoard.tsx
+    │   ├── HoldPanel.tsx
+    │   ├── NextQueuePanel.tsx
+    │   ├── ScorePanel.tsx
+    │   ├── MobileControls.tsx
+    │   ├── ErrorBoundary.tsx
+    │   ├── GameOverModal.tsx
+    │   └── PauseModal.tsx
+    │
+    ├── game/
+    │   ├── audio.ts
+    │   ├── bag.ts
+    │   ├── board.ts
+    │   ├── collision.ts
+    │   ├── constants.ts
+    │   ├── gameEngine.ts
+    │   ├── pieces.ts
+    │   ├── rotation.ts
+    │   ├── scoring.ts
+    │   ├── srsKicks.ts
+    │   ├── types.ts
+    │   └── useControls.ts
+    │
+    ├── lib/
+    │   └── storage.ts
+    │
+    └── tests/
+        ├── engine.test.ts
+        └── runTests.ts
+```
+
+---
+
+# 🧪 Testing
+
+The project contains a headless test suite for validating core game-engine behavior without relying on browser rendering.
+
+Current test status:
+
+```text
+12 / 12 Tests Passing
+```
+
+The tests cover core areas such as:
+
+* Piece generation
+* Movement
+* Collision
+* Rotation
+* Board behavior
+* Row clearing
+* Scoring
+* Game-state transitions
+
+Test runner:
+
+```text
+src/tests/runTests.ts
+```
+
+---
+
+# 🔐 Security
+
+Security considerations are documented in:
+
+**[SECURITY.md](SECURITY.md)**
+
+The project follows several defensive practices:
+
+* Sanitized localStorage parsing
+* Numeric bounds validation
+* Safe persisted-state handling
+* Prototype-injection prevention
+* No arbitrary `eval()` execution
+* TypeScript type boundaries
+* React Error Boundary protection
+* Controlled browser APIs
+* No secrets committed to source control
+
+Environment-specific values should be stored outside the repository and represented through `.env.example` when required.
+
+---
+
+# ⚙️ Technical Stack
+
+### Frontend
+
+* React 19
+* TypeScript 5.x
+* Vite 8.x
+* HTML5 Canvas
+* CSS
+
+### Game Systems
+
+* Custom TypeScript game engine
+* 7-bag randomizer
+* SRS rotation
+* Collision detection
+* Gravity system
+* Scoring system
+* Level progression
+* Hold queue
+* Next-piece queue
+
+### Browser APIs
+
+* Canvas API
+* Web Audio API
+* Fullscreen API
+* LocalStorage
+* Pointer / Touch Events
+* Keyboard Events
+
+### Development
+
+* Git
+* GitHub
+* TypeScript
+* Vite
+* Headless test runner
+
+---
+
+# 📱 Responsive Design
+
+BlockFall is designed to work across:
+
+```text
+Desktop
+   │
+   ├── Keyboard
+   ├── Mouse
+   └── Fullscreen
+        │
+        ▼
+Tablet
+   │
+   └── Touch Controls
+        │
+        ▼
+Mobile
+   │
+   ├── Touch D-Pad
+   ├── Tap Zones
+   ├── Swipe
+   └── Double-Tap
+```
+
+The interface adjusts the board and controls based on available screen space.
+
+---
+
+# 📊 Design Principles
+
+The project is structured around several core principles:
+
+### Separation of Concerns
+
+Game logic remains independent from the React interface.
+
+### Deterministic State
+
+Gameplay state is managed through predictable state transitions.
+
+### Testability
+
+Core gameplay systems can be tested without browser rendering.
+
+### Responsive Interaction
+
+Controls are designed for keyboard, mouse, and touch devices.
+
+### Lightweight Runtime
+
+The game avoids unnecessary external runtime dependencies for audio and core gameplay systems.
+
+### Defensive Data Handling
+
+Persisted browser data is validated before being used by the game.
+
+---
+
+# 👤 Project
+
+**BlockFall** is developed and maintained by **[Devputta](https://github.com/Devputta)**.
+
+Repository:
+
+**https://github.com/Devputta/BackFall**
+
+---
+
+
+# 📄 License
+
+This project is licensed under the **Apache License 2.0**.
+
+See the [LICENSE](LICENSE) file for the complete license text.
+
+---
+
+<p align="center">
+  <strong>BlockFall</strong>
+  <br />
+  A browser-based falling-block puzzle game.
+</p>
+
+<p align="center">
+  <em>Build. Play. Clear. Repeat.</em>
+</p>
