@@ -1,0 +1,6 @@
+{
+  "name": "BlockFall",
+  "description": "A polished browser-based falling-block puzzle game with responsive controls, 7-bag randomizer, authentic rotation kicks, and arcade sound effects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
