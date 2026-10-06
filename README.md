@@ -1,4 +1,4 @@
-# BlockFall — Web Falling-Block Puzzle Game
+<p align="center"><strong></strong>BlockFall — Web Falling-Block Puzzle Game</strong></p>  
 
 <p align="center">
   <a href="https://github.com/Devputta/Drafts-might-be-needed-/blob/main/LOGO/Gemini_Generated_Image_1ppnm1ppnm1ppnm1%20(1).jfif" target="_blank" rel="noopener noreferrer">
