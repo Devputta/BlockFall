@@ -496,14 +496,14 @@ export const CanvasBoard: React.FC<CanvasBoardProps> = ({
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onContextMenu={handleContextMenu}
-      className={`relative mx-auto rounded-xl overflow-hidden border-2 border-slate-300 bg-white shadow-xl shadow-slate-200/80 transition-all select-none touch-none cursor-pointer ${sizeClasses}`}
+      className={`relative mx-auto rounded-xl overflow-hidden border-2 border-slate-300 bg-white shadow-xl shadow-slate-200/80 transition-all select-none touch-none cursor-pointer max-h-[50vh] sm:max-h-none flex items-center justify-center ${sizeClasses}`}
       title="Tap Left: Move Left · Tap Right: Move Right · Tap Up: Rotate · Tap Down: Drop · Double-Tap: Hard Drop"
     >
       <canvas
         ref={canvasRef}
         width={300}
         height={600}
-        className="block aspect-[1/2] w-full h-auto touch-none select-none"
+        className="block aspect-[1/2] w-full max-h-[50vh] sm:max-h-none h-auto object-contain touch-none select-none"
         aria-label="BlockFall 10 by 20 game board. Tap Left to move left, Tap Right to move right, Tap Up to rotate, Tap Down to drop, Double-tap to hard drop."
         role="img"
       />
